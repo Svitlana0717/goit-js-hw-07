@@ -25,30 +25,12 @@ const images = [
   }
 ];
 
-const form = document.querySelector('.login-form');
+const gallery = document.querySelector('.gallery');
 
-form.addEventListener('submit', function (event) {
-  event.preventDefault(); // Запобігаємо перезавантаженню сторінки при сабміті
+const galleryItems = images.map(image => `
+  <li class="gallery-item">
+    <img src="${image.url}" alt="${image.alt}">
+  </li>
+`).join('');
 
-  const email = form.elements.email.value.trim();
-  const password = form.elements.password.value.trim();
-
-  // Перевірка на заповненість полів
-  if (email === '' || password === '') {
-    alert('All form fields must be filled in');
-    return;
-  }
-
-  // Створення об'єкта з даними форми
-  const formData = {
-    email: email,
-    password: password,
-  };
-
-  // Виведення об'єкта в консоль
-  console.log(formData);
-
-  // Очищення полів форми
-  form.reset();
-});
-
+gallery.insertAdjacentHTML('beforeend', galleryItems);
